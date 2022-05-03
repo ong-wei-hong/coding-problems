@@ -1,0 +1,8 @@
+# c++ windows
+*.exe
+*.obj
+
+# c++ linux
+*.out
+
+.vscode
