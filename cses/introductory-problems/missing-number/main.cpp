@@ -1,18 +1,13 @@
 #include <iostream>
 
-int n, x;
-bool b[static_cast<unsigned int>(2*10e5)];
+long long n, x, s;
 
 int main() {
     std::cin >> n;
-    for(int i{1}; i<n; ++i) {
+    for(int i{0}; i<n-1; ++i) {
         std::cin >> x;
-        b[x-1] = true;
+        s += x;
     }
-    for(int i{0}; i<n; ++i) {
-        if(!b[i]) {
-            std::cout << i+1 << '\n';
-            return 0;
-        }
-    }
+    std::cout << (n * (n+1) / 2) - s << '\n';
+    return 0;
 }
