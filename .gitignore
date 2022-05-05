@@ -2,7 +2,11 @@
 *.exe
 *.obj
 
-# c++ linux
+# vi/m / emacs
+*.cpp~
+
+# in/out files
+*.in
 *.out
 
 .vscode
