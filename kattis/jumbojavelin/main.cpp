@@ -13,8 +13,7 @@ using namespace std;
 #define se second
 #define pb push_back
 
-int r;
-double s;
+int n,l,s;
 
 void solve() {
 }
@@ -23,5 +22,7 @@ int main() {
 	ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
 	//freopen("","r",stdin);
 	//freopen("","w",stdout);
-	while(cin>>r>>s) cout<<(int)(round(sqrt((r*(s+0.16))/0.067)))<<'\n';
+	cin>>n;
+	forn(i,n) cin>>l,s+=l;
+	cout<<s-n+1<<'\n';
 }

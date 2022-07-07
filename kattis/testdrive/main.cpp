@@ -13,8 +13,7 @@ using namespace std;
 #define se second
 #define pb push_back
 
-int r;
-double s;
+int a,b,c,d,e;
 
 void solve() {
 }
@@ -23,5 +22,11 @@ int main() {
 	ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
 	//freopen("","r",stdin);
 	//freopen("","w",stdout);
-	while(cin>>r>>s) cout<<(int)(round(sqrt((r*(s+0.16))/0.067)))<<'\n';
+	cin>>a>>b>>c;
+	d=b-a;
+	e=c-b;
+	if(d==e) cout<<"cruised\n";
+	else if(d>0!=e>0) cout<<"turned\n";
+	else if(abs(d)>abs(e)) cout<<"braked\n";
+	else cout<<"accelerated\n";
 }
