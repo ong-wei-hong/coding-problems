@@ -84,20 +84,18 @@ bool prime(ll x) {
 	return true;
 }
 
-int t,n;
-vi v;
+int t;
+string s;
 
 void solve() {
-	cin>>n;
-	v.resize(n);
+	cin>>s;
+	int a=(int)sqrt(s.size());
+	vector<vector<char>> v(a,vector<char>(a));
 
-	for(auto &i: v) cin>>i;
-	int mini=v[0],mini2=INT_MAX,ans=0;
-	for(auto i: v) {
-		if(i>mini&&i<mini2) ++ans,mini2=min(mini2,i);
-		else mini=min(mini,i);
-	}
-	cout<<ans<<'\n';
+	forn(i,a) forn(j,a) v[i][j]=s[i*a+j];
+	
+	for(int j=a-1;j>=0;--j) forn(i,a) cout<<v[i][j];
+	cout<<'\n';
 }
 
 int main() {

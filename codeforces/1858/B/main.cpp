@@ -84,20 +84,38 @@ bool prime(ll x) {
 	return true;
 }
 
-int t,n;
-vi v;
+int t,n,m,d;
+vi v,dp1,dp2;
 
 void solve() {
-	cin>>n;
-	v.resize(n);
-
+	cin>>n>>m>>d;
+	v.resize(m);
 	for(auto &i: v) cin>>i;
-	int mini=v[0],mini2=INT_MAX,ans=0;
-	for(auto i: v) {
-		if(i>mini&&i<mini2) ++ans,mini2=min(mini2,i);
-		else mini=min(mini,i);
+
+	dp1.resize(m);
+	dp1[0]=(v[0]-2)/d+2-(v[0]==1);
+	for(int i=1;i<m;++i) dp1[i]=dp1[i-1]+(v[i]-v[i-1]-1)/d+1;
+
+	dp2.resize(m);
+	dp2[m-1]=(n-v[m-1])/d+1;
+	for(int i=m-2;i>=0;--i) dp2[i]=dp2[i+1]+(v[i+1]-v[i]-1)/d+1;
+
+	int ans1,ans2,curr;
+	ans1=(v[1]-2)/d+1+dp2[1];
+	ans2=1;
+
+	for(int i=1;i<m-1;++i) {
+		curr=dp1[i-1]+dp2[i+1]+(v[i+1]-v[i-1]-1)/d;
+		if(curr<ans1) ans1=curr,ans2=0;
+		ans2+=(curr==ans1);
 	}
-	cout<<ans<<'\n';
+
+	curr=(n-v[m-2])/d+dp1[m-2];
+	if(curr<ans1) ans1=curr,ans2=0;
+	ans2+=(curr==ans1);
+
+	cout<<ans1<<' '<<ans2<<'\n';
+
 }
 
 int main() {

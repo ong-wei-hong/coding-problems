@@ -84,24 +84,35 @@ bool prime(ll x) {
 	return true;
 }
 
-int t,n;
-vi v;
+int t;
+string s,m[26];
 
 void solve() {
-	cin>>n;
-	v.resize(n);
+	getline(cin,s);
+	char prev=' ';
+	for(auto c: s) {
+		string curr;
+		if(c==' ') curr="0";
+		else curr=m[c-'a'];
 
-	for(auto &i: v) cin>>i;
-	int mini=v[0],mini2=INT_MAX,ans=0;
-	for(auto i: v) {
-		if(i>mini&&i<mini2) ++ans,mini2=min(mini2,i);
-		else mini=min(mini,i);
+		if(curr[0]==prev) cout<<' ';
+		cout<<curr;
+		prev=curr[curr.size()-1];
 	}
-	cout<<ans<<'\n';
+	cout<<'\n';
 }
 
 int main() {
 	ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+	int k=0;
+	forn(i,8) {
+		string s="";
+		forn(j,3+(i==5)+(i==7)) {
+			s+=(i+'2');
+			m[k++]=s;
+		}
+	}
 	cin>>t;
-	while(t--) solve();
+	cin.ignore();
+	forn(i,t) cout<<"Case #"<<(i+1)<<": ", solve();
 }
